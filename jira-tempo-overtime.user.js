@@ -12,17 +12,19 @@
 try {
 
 function getWorkDays(skipDays, count) {
+  var firstDayTh = 1;
   var workDays = 0;
-  $('#issuetable thead tr:first-child th:gt(' + skipDays + ')').each(function(index, el){
-    if (index >= count)
-      return;
+  
+  var start = firstDayTh + skipDays;
+  var end = start + count;
+  
+  $('#issuetable thead tr:first-child th').slice(start, end).each(function(index, el){
+    var $th = $(this);
     
-    var th = $(this);
-    
-    if (th.hasClass('tt-holiday'))
+    if ($th.hasClass('tt-holiday'))
       return;
 
-    var dateData = th.attr('data-tempo-date');
+    var dateData = $th.attr('data-tempo-date');
     var date = new Date(parseInt(dateData.substr(4, 4)), parseInt(dateData.substr(2,2)) - 1, parseInt(dateData.substr(0,2)), 0, 0, 0, 0);
     
     if (date.getDay() != 0 && date.getDay() != 6)
