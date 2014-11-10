@@ -3,7 +3,7 @@
 // @description Greasemonkey Overtime User script for Jira Tempo plugin
 // @version     1.0
 // @namespace   com.gk-software.es.msloup.jira.tempo.overtime
-// @include     http*://*jira*/secure/TempoUserBoard!timesheet.jspa*
+// @include     /^https?://([\w\d\.-]*)jira([\w\d\.-]*)/secure/TempoUserBoard!timesheet.jspa/
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
 // @grant    GM_addStyle
 // ==/UserScript==
