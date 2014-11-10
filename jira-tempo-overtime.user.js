@@ -1,5 +1,6 @@
 // ==UserScript==
 // @name        Jira Tempo Overtime
+// @description Greasemonkey Overtime User script for Jira Tempo plugin
 // @version     1.0
 // @namespace   com.gk-software.es.msloup.jira.tempo.overtime
 // @include     http*://*jira*/secure/TempoUserBoard!timesheet.jspa*
