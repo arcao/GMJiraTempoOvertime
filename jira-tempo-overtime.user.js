@@ -2,7 +2,7 @@
 // @name        Jira Tempo Overtime
 // @description Greasemonkey Overtime User script for Jira Tempo plugin
 // @author      Arcao
-// @version     1.0.2
+// @version     1.0.3
 // @namespace   com.gk-software.es.msloup.jira.tempo.overtime
 // @include     https://jira.gk-software.com/secure/TempoUserBoard!timesheet.jspa*
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -37,8 +37,6 @@ function getCurrentWorkedDay() {
     if ($th.hasClass('tt-current-day'))
       skipNext = true;
   });
-  
-  alert(workedDays);
   
   return workedDays;
 }
