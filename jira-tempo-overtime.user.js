@@ -4,7 +4,7 @@
 // @author      Arcao
 // @version     1.0
 // @namespace   com.gk-software.es.msloup.jira.tempo.overtime
-// @include     /^https?://([\w\d\.-]*)jira([\w\d\.-]*)/secure/TempoUserBoard!timesheet.jspa/
+// @include     https://jira.gk-software.com/secure/TempoUserBoard!timesheet.jspa*
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
 // @updateURL   https://github.com/arcao/GMJiraTempoOvertime/raw/master/jira-tempo-overtime.meta.js
 // @grant       GM_addStyle
@@ -62,7 +62,8 @@ function prettyTime(input) {
 }
   
 var handledDays = 0;
-var sumTr = $('#issuetable tfoot tr:last-child th:gt(0)').each(function(){
+
+var sumTr = $('#issuetable tfoot tr:nth-last-child(2) th:gt(0)').each(function(){
   var th = $(this);
   var time = th.text().trim();
   if (time.length > 0) {
