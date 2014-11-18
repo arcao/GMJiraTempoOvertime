@@ -2,7 +2,7 @@
 // @name        Jira Tempo Overtime
 // @description Greasemonkey Overtime User script for Jira Tempo plugin
 // @author      Arcao
-// @version     1.0.3
+// @version     1.0.4
 // @namespace   com.gk-software.es.msloup.jira.tempo.overtime
 // @include     https://jira.gk-software.com/secure/TempoUserBoard!timesheet.jspa*
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -142,21 +142,6 @@ if (differenceTotalTime < 0) {
 } else {
   $requiredTotal.append($('<br/><span style="color:green" title="'+ prettyTime(differenceTotalTime) + '"> (' + differenceTotalTime + ')</span>'));
 }
-
-var $totalTable = $('#tempo-table table.total-work-bottom');
-  
-var workedTime = getCurrentWorkedDay() * 8;
-if (workedTime == 0)
-  workedTime = parseFloat($requiredTotal.text());
-  
-var currentAverage = roundTime(parseFloat($currentTotal.text()) - workedTime);
-
-if (currentAverage < 0) {
-  $totalTable.append($('<tfoot><tr><th>Average:</th><td/><td class="no-border"><span style="color:red" title="'+ prettyTime(currentAverage) + '">' + currentAverage + '</span></td></tr></tfoot>'));
-} else {
-  $totalTable.append($('<tfoot><tr><th>Average:</th><td/><td class="no-border"><span style="color:greeen" title="'+ prettyTime(currentAverage) + '">' + currentAverage + '</span></td></tr></tfoot>'));
-}
-  
     
 } catch (err) {
 
