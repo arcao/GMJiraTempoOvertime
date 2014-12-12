@@ -2,7 +2,7 @@
 // @name        Jira Tempo Overtime
 // @description Greasemonkey Overtime User script for Jira Tempo plugin
 // @author      Arcao
-// @version     1.0.5
+// @version     1.0.6
 // @namespace   com.arcao.jira.tempo.overtime
 // @include     /^https?://([\w\d\.-]*)jira([\w\d\.-]*)/secure/TempoUserBoard!timesheet.jspa/
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -95,25 +95,22 @@ function prettyTime(input) {
   
 var handledDays = 0;
 
-var sumTr = $('#issuetable tfoot tr:nth-last-child(2) th:gt(0)').each(function(){
-  var th = $(this);
-  var time = th.text().trim();
+var $sumTr = $('#issuetable tfoot tr:nth-last-child(2) th:gt(0)').each(function(){
+  var $th = $(this);
+  
+  var days = Math.max(parseInt($th.attr('colspan')), 1);
+  var workDays = getWorkDays(handledDays, days);
+  handledDays = handledDays + days;
+ 
+  var time = $th.text().trim();
   if (time.length > 0) {
-    time = parseFloat(time);
-    
-    var days = Math.max(parseInt(th.attr('colspan')), 1);
-    var workDays = getWorkDays(handledDays, days);
-    
-    //alert(days);
-    
-    handledDays = handledDays + days;
-   
+    time = parseFloat(time);  
     time = roundTime(time - workDays * 8);
     
     if (time < 0) {
-      th.append($(' <span style="color:red" title="'+ prettyTime(time) + '">(' + time + ')</span>'));
+      $th.append($(' <span style="color:red" title="'+ prettyTime(time) + '">(' + time + ')</span>'));
     } else {
-      th.append($(' <span style="color:green" title="'+ prettyTime(time) + '">(' + time + ')</span>'));
+      $th.append($(' <span style="color:green" title="'+ prettyTime(time) + '">(' + time + ')</span>'));
     }
   } 
 });
